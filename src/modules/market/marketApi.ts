@@ -1,6 +1,6 @@
 import { string } from "prop-types";
 import useSWR, { Fetcher, SWRConfiguration } from "swr";
-import { ApiResponse, Currency } from "../types";
+import { ApiResponse, Currency, PriceChange } from "../types";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -13,5 +13,5 @@ export const useMarketCurrencies = (config?: SWRConfiguration) => {
 export const useMarketChanges = (config?: SWRConfiguration) => {
   const url = "/pintuApi/v2/trade/price-changes";
 
-  return useSWR<ApiResponse<Currency[]>>(url, fetcher, config);
+  return useSWR<ApiResponse<PriceChange[]>>(url, fetcher, config);
 };

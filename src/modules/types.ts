@@ -8,6 +8,15 @@ export type Currency = {
   name: string;
 };
 
+export type PriceChange = {
+  pair: string;
+  latestPrice: string;
+  day: string;
+  week: string;
+  month: string;
+  year: string;
+};
+
 export type ApiResponse<Payload> = {
   code: string;
   message: string;

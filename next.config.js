@@ -4,6 +4,11 @@ const rewrites = () => {
       source: "/pintuApi/:slug*",
       destination: "https://api.pintu.co.id/:slug*",
     },
+    {
+      source: "/pintuAssets/:slug*",
+      destination:
+        "https://s3-ap-southeast-1.amazonaws.com/static.pintu.co.id/assets/:slug*",
+    },
   ];
 };
 
