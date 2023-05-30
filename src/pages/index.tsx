@@ -12,6 +12,18 @@ export default function Home() {
   const marketCurrencies = useMarketCurrencies();
   const marketChanges = useMarketChanges({ refreshInterval: 1000 });
 
+  const aggregatedCurrencies = marketCurrencies?.data?.payload
+    ?.map((currency) => {
+      const priceChange = marketChanges.data?.payload?.find(
+        (priceChange) =>
+          priceChange.pair.split("/")[0] ===
+          currency.currencySymbol.toLowerCase()
+      );
+
+      return { ...currency, priceChange };
+    })
+    .filter((currency) => currency.priceChange);
+
   return (
     <main className={`${inter.className}`}>
       <table className="table">
@@ -28,15 +40,7 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-          {marketCurrencies?.data?.payload?.map((c) => {
-            const priceChange = marketChanges.data?.payload?.find(
-              (p) => p.pair.split("/")[0] == c.currencySymbol.toLowerCase()
-            );
-
-            if (!priceChange) {
-              return null;
-            }
-
+          {aggregatedCurrencies?.map((c) => {
             return (
               <tr key={c.currencySymbol}>
                 <td>
@@ -58,27 +62,27 @@ export default function Home() {
                 </td>
                 <td>
                   <div className="font-medium tabular-nums">
-                    {priceChange?.latestPrice}
+                    {c.priceChange?.latestPrice}
                   </div>
                 </td>
                 <td>
                   <div className="font-medium tabular-nums">
-                    {priceChange?.day}
+                    {c.priceChange?.day}
                   </div>
                 </td>
                 <td>
                   <div className="font-medium tabular-nums">
-                    {priceChange?.week}
+                    {c.priceChange?.week}
                   </div>
                 </td>
                 <td>
                   <div className="font-medium tabular-nums">
-                    {priceChange?.month}
+                    {c.priceChange?.month}
                   </div>
                 </td>
                 <td>
                   <div className="font-medium tabular-nums">
-                    {priceChange?.year}
+                    {c.priceChange?.year}
                   </div>
                 </td>
               </tr>
