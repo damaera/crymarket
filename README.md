@@ -12,27 +12,28 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Design Consideration
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Folder Structure
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+for folder structure, I'm using DDD (Domain Driven Development), every domain will be inside `modules`, for this task, there is only one Domain which is `market`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Libraries Choices
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- NextJS + Typescript
+- Tailwind for styling
+- SWR for data fetching, i choose SWR, simply because it's bundle size, far smaller than `react-query`
+- Prettier + eslint + husky for code formatter, linter, format on commit
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+### Gotchas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- the API CORS is not enabled, so i must proxy it.
+- svg image and color are separated, so we must manual colorize the svg with color from api. I use ReactSVG for it. the asset page CORS is not enabled too, must proxy again.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Room of improvements
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Testing, i personally prefer e2e testing for frontend especially web, usually im using playwright
+- SSR, we can use new next 13 app router + server actions for creating zero js bundle app with react server components
+- Universal App + Website in one codebase, use expo+next js or solito
