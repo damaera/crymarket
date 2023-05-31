@@ -25,6 +25,11 @@ for folder structure, I'm using DDD (Domain Driven Development), every domain wi
 - SWR for data fetching, i choose SWR, simply because it's bundle size, far smaller than `react-query`
 - Prettier + eslint + husky for code formatter, linter, format on commit
 
+### Other details
+
+- using `tabular-nums` for chart number https://fonts.google.com/knowledge/introducing_type/understanding_numerals#when-to-use-tabular-lining-numerals
+- using `number.toLocaleString("id")` to format number with correct bahasa indonesia spelling, for example like use `,` instead of `.` for fractions.
+
 ---
 
 ### Gotchas

@@ -44,12 +44,12 @@ export default function MarketPage() {
             <tr className="!text-left">
               <th></th>
               <th>CRYPTO</th>
-              <th></th>
+              <th className="hidden md:table-cell"></th>
               <th>HARGA</th>
-              <th>24 JAM</th>
-              <th>1 MGG</th>
-              <th>1 BLN</th>
-              <th>1 THN</th>
+              <th className="hidden md:table-cell">24 JAM</th>
+              <th className="hidden md:table-cell">1 MGG</th>
+              <th className="hidden md:table-cell">1 BLN</th>
+              <th className="hidden md:table-cell">1 THN</th>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +73,7 @@ export default function MarketPage() {
                   <td>
                     <div className="font-medium">{c.name}</div>
                   </td>
-                  <td>
+                  <td className="hidden md:table-cell">
                     <div className="font-medium text-slate-400">
                       {c.currencySymbol}
                     </div>
@@ -81,24 +81,28 @@ export default function MarketPage() {
                   <td>
                     <div className="font-medium tabular-nums">
                       <LatestPrice price={c.priceChange?.latestPrice} />
+
+                      <div className="text-xs font-bold py-2 block md:hidden">
+                        <PriceChangeText change={c.priceChange?.day} />
+                      </div>
                     </div>
                   </td>
-                  <td>
+                  <td className="hidden md:table-cell">
                     <div className="font-medium tabular-nums">
                       <PriceChangeText change={c.priceChange?.day} />
                     </div>
                   </td>
-                  <td>
+                  <td className="hidden md:table-cell">
                     <div className="font-medium tabular-nums">
                       <PriceChangeText change={c.priceChange?.week} />
                     </div>
                   </td>
-                  <td>
+                  <td className="hidden md:table-cell">
                     <div className="font-medium tabular-nums">
                       <PriceChangeText change={c.priceChange?.month} />
                     </div>
                   </td>
-                  <td>
+                  <td className="hidden md:table-cell">
                     <div className="font-medium tabular-nums">
                       <PriceChangeText change={c.priceChange?.year} />
                     </div>
